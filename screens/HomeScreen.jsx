@@ -12,7 +12,7 @@ export default function HomeScreen() {
 
   const handleReset = async ()=>{
     await removeItem('onboarded');
-    navigation.push('Onboarding');
+    navigation.replace('GetStarted');
   }
   return (
     <SafeAreaView style={styles.container}>
