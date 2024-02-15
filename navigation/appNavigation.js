@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen.js';
-import OnboardingScreen from '../screens/OnboardingScreen.js';
+import HomeScreen from '../screens/HomeScreen.jsx';
+import OnboardingScreen from '../screens/onboarding/OnboardingScreen.jsx';
 import { getItem } from '../utils/asyncStorage.js';
+import GetStarted from '../screens/GetStarted.jsx';
+import LoadingScreen from '../screens/Loading.jsx';
+import UserType from '../screens/onboarding/UserType.jsx'
 
 
 const Stack = createNativeStackNavigator();
@@ -12,45 +15,48 @@ const Stack = createNativeStackNavigator();
 export default function AppNavigation() {
 
   const [showOnboarding, setShowOnboarding] = useState(null);
-  useEffect(()=>{
+  useEffect(() => {
     checkIfAlreadyOnboarded();
-  },[])
+  }, [])
 
-  const checkIfAlreadyOnboarded = async ()=>{
+  const checkIfAlreadyOnboarded = async () => {
     let onboarded = await getItem('onboarded');
-    if(onboarded==1){
+    if (onboarded == 1) {
       // hide onboarding
       setShowOnboarding(false);
-    }else{
+    } else {
       // show onboarding
       setShowOnboarding(true);
     }
   }
 
-  if(showOnboarding==null){
+  if (showOnboarding == null) {
     return null;
   }
 
 
-  if(showOnboarding){
+  if (showOnboarding) {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Onboarding'>
-          <Stack.Screen name="Onboarding" options={{headerShown: false}} component={OnboardingScreen} />
-          <Stack.Screen name="Home" options={{headerShown: false}} component={HomeScreen} />
+        <Stack.Navigator initialRouteName='GetStarted'>
+          {/* <Stack.Screen name="LoadingScreen" options={{ headerShown: false }} component={LoadingScreen} /> */}
+          <Stack.Screen name="GetStarted" options={{ headerShown: false }} component={GetStarted} />
+          <Stack.Screen name="UserType" options={{headerShown: false }} component={UserType} />
+          <Stack.Screen name="Onboarding" options={{ headerShown: false }} component={OnboardingScreen} />
+          {/* <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     )
-  }else{
+  } else {
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name="Onboarding" options={{headerShown: false}} component={OnboardingScreen} />
-          <Stack.Screen name="Home" options={{headerShown: false}} component={HomeScreen} />
+          <Stack.Screen name="Onboarding" options={{ headerShown: false }} component={OnboardingScreen} />
+          <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     )
   }
 
-  
+
 }
