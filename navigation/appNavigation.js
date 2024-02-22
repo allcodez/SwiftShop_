@@ -10,6 +10,10 @@ import UserType from '../screens/onboarding/UserType.jsx';
 import OnboardingOne from '../screens/onboarding/OnboardingOne.jsx'
 import OnboardingTwo from '../screens/onboarding/OnboardingTwo.jsx'
 import OnboardingThree from '../screens/onboarding/OnboardingThree.jsx'
+import SignUp from '../screens/auth/SignUp.jsx'
+import AddAddress from '../screens/auth/AddAddress.jsx'
+import AddFriends from '../screens/auth/AddFriends.jsx'
+
 
 
 const Stack = createNativeStackNavigator();
@@ -48,6 +52,11 @@ export default function AppNavigation() {
           <Stack.Screen name="OnboardingOne" options={{ headerShown: false }} component={OnboardingOne} />
           <Stack.Screen name="OnboardingTwo" options={{ headerShown: false }} component={OnboardingTwo} />
           <Stack.Screen name="OnboardingThree" options={{ headerShown: false }} component={OnboardingThree} />
+          <Stack.Screen name="SignUp" options={{ headerShown: false }} component={SignUp} />
+          <Stack.Screen name="AddAddress" options={{ headerShown: false }} component={AddAddress} />
+          <Stack.Screen name="AddFriends" options={{ headerShown: false }} component={AddFriends} />
+
+
           {/* <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} /> */}
         </Stack.Navigator>
       </NavigationContainer>

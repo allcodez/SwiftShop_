@@ -5,7 +5,12 @@ import { theme } from '../../theme'
 const { width, height } = Dimensions.get('window')
 
 
-export default function OnboardingOne() {
+export default function OnboardingOne({ navigation }) {
+
+    const handleContinue = () => {
+        navigation.push('SignUp')
+    }
+
     return (
         <ImageBackground source={require('../../assets/onboarding3.jpeg')} style={styles.backgroundImage}>
             <View style={styles.screenContainer}>
@@ -23,7 +28,7 @@ Get your meals, medications, fruits, dessert.</Text>
                         <View style={styles.sliderActiveObject}></View>
                     </View>
 
-                    <TouchableOpacity style={styles.boardButton}>
+                    <TouchableOpacity style={styles.boardButton} onPress={handleContinue}>
                         <Text style={styles.buttonText}>CONTINUE</Text>
                     </TouchableOpacity>
                 </View>
