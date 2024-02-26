@@ -2,6 +2,7 @@ import React from 'react';
 import { TextInput, View, Text, StyleSheet, SafeAreaView, Dimensions, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Formik } from 'formik';
 import { theme } from '../../theme';
+import { globalStyle } from '../../globalStyle';
 
 const { width, height } = Dimensions.get('window');
 
@@ -16,7 +17,7 @@ export default function SignUp({ navigation }) {
     }
 
     return (
-        <SafeAreaView style={styles.screenContainer}>
+        <SafeAreaView style={globalStyle.screenContainer}>
             <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
                 <ScrollView>
                     <View style={styles.screenContent}>
@@ -34,40 +35,40 @@ export default function SignUp({ navigation }) {
                         >
                             {(props) => (
                                 <View style={styles.form}>
-                                    <View style={styles.label}>
-                                        <Text style={styles.labelText}>Name</Text>
+                                    <View style={globalStyle.label}>
+                                        <Text style={globalStyle.labelText}>Name</Text>
                                         <TextInput
-                                            style={styles.input}
+                                            style={globalStyle.input}
                                             placeholder='Enter Full Name'
                                             onChangeText={props.handleChange('name')}
                                             value={props.values.name}
                                         />
                                     </View>
 
-                                    <View style={styles.label}>
-                                        <Text style={styles.labelText}>Email</Text>
+                                    <View style={globalStyle.label}>
+                                        <Text style={globalStyle.labelText}>Email</Text>
                                         <TextInput
-                                            style={styles.input}
+                                            style={globalStyle.input}
                                             placeholder='Enter Email Address'
                                             onChangeText={props.handleChange('email')}
                                             value={props.values.email}
                                         />
                                     </View>
 
-                                    <View style={styles.label}>
-                                        <Text style={styles.labelText}>Swift Username</Text>
+                                    <View style={globalStyle.label}>
+                                        <Text style={globalStyle.labelText}>Swift Username</Text>
                                         <TextInput
-                                            style={styles.input}
+                                            style={globalStyle.input}
                                             placeholder='Enter Preferred Username'
                                             onChangeText={props.handleChange('swiftUsername')}
                                             value={props.values.swiftUsername}
                                         />
                                     </View>
 
-                                    <View style={styles.label}>
-                                        <Text style={styles.labelText}>Password</Text>
+                                    <View style={globalStyle.label}>
+                                        <Text style={globalStyle.labelText}>Password</Text>
                                         <TextInput
-                                            style={styles.input}
+                                            style={globalStyle.input}
                                             placeholder='Create Password'
                                             onChangeText={props.handleChange('password')}
                                             value={props.values.password}
@@ -80,8 +81,8 @@ export default function SignUp({ navigation }) {
                                             By signing up, you’ve agreed to our mobile app Terms and Conditions.
                                         </Text>
 
-                                        <TouchableOpacity style={styles.submitButton} onPress={props.handleSubmit}>
-                                            <Text style={styles.submitButtonText}>CREATE AN ACCOUNT</Text>
+                                        <TouchableOpacity style={globalStyle.solidButton} onPress={props.handleSubmit}>
+                                            <Text style={globalStyle.solidButtonText}>CREATE AN ACCOUNT</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
@@ -99,12 +100,9 @@ export default function SignUp({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-    },
-    container: {
-        flex: 1,
-    },
+    // container: {
+    //     flex: 1,
+    // },
     screenContent: {
         paddingHorizontal: 30,
         paddingVertical: 30,
@@ -124,32 +122,6 @@ const styles = StyleSheet.create({
     },
     form: {
         gap: 20,
-    },
-    label: {
-        gap: 15,
-    },
-    labelText: {
-        fontFamily: theme.font.minimal,
-    },
-    input: {
-        padding: 20,
-        borderWidth: 1,
-        borderColor: '#dddddd',
-        backgroundColor: '#E6E6E6',
-        borderRadius: 50,
-    },
-    submitButton: {
-        backgroundColor: theme.color.primary,
-        fontFamily: theme.font.minimal,
-        alignSelf: 'center',
-        paddingHorizontal: 95,
-        paddingVertical: 25,
-        borderRadius: 40,
-    },
-    submitButtonText: {
-        fontFamily: theme.font.minimal,
-        color: 'white',
-        fontSize: width * 0.03,
     },
     termsText: {
         textAlign: 'center',

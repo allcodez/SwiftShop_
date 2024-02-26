@@ -4,7 +4,8 @@ export const theme = {
         secondary: '#D8FF80',
         background: '#3B2E98',
         darkText: '#202223',
-        lightText: '#6D7175'
+        lightText: '#6D7175',
+        labelText: '#000000b3',
     },
     fontSize: {
         small: 12,
@@ -12,7 +13,7 @@ export const theme = {
         large: 20,
     },
     font: {
-        minimal: 'Circular-Std-Medium',
+        minimal: 'CircularStd-Regular',
         styleBold: 'Syne-Bold',
 
     }

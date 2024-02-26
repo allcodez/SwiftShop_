@@ -16,9 +16,9 @@ export default function HomeScreen() {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.lottie}>
+      {/* <View style={styles.lottie}>
         <Lottie source={require('../assets/animations/confetti.json')} autoPlay loop />
-      </View>
+      </View> */}
       <Text style={styles.text}>Home Page</Text>
       <TouchableOpacity onPress={handleReset} style={styles.resetButton}>
         <Text>Reset</Text>

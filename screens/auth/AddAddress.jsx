@@ -43,7 +43,7 @@ export default function AddAddress({ navigation }) {
 								<View style={styles.form}>
 									<View style={styles.formInput}>
 										<View style={globalStyle.label}>
-											<Text style={styles.labelText}>Enter Your Adress</Text>
+											<Text style={globalStyle.labelText}>Enter Your Adress</Text>
 											<TextInput
 												style={globalStyle.input}
 												placeholder="Enter Full Name"
@@ -53,7 +53,7 @@ export default function AddAddress({ navigation }) {
 										</View>
 
 										<View style={globalStyle.label}>
-											<Text style={styles.labelText}>Phone Number</Text>
+											<Text style={globalStyle.labelText}>Phone Number</Text>
 											<View style={styles.inputContainer}>
 												<View style={styles.inputImage}>
 													<Image source={require('../../assets/twemoji_flag-nigeria.png')} style={styles.inputIcon} />
@@ -69,8 +69,8 @@ export default function AddAddress({ navigation }) {
 										</View>
 									</View>
 
-									<TouchableOpacity style={styles.submitButton} onPress={props.handleSubmit}>
-										<Text style={styles.submitButtonText}>CREATE AN ACCOUNT</Text>
+									<TouchableOpacity style={globalStyle.solidButton} onPress={props.handleSubmit}>
+										<Text style={globalStyle.solidButtonText}>CREATE AN ACCOUNT</Text>
 									</TouchableOpacity>
 
 									{/* <View style={{ gap: 60, marginTop: 20 }}>
@@ -88,82 +88,61 @@ export default function AddAddress({ navigation }) {
 	);
 }
 
-styles = StyleSheet.create({
-	
-	screenContent: {
-		paddingHorizontal: 30,
-		paddingVertical: 30,
-		gap: 25,
-		// backgroundColor: 'green',
-
-
-		// justifyContent: 'space-between',
-		// flex: 1,
-	},
-	formHead: {
-		gap: 8
-	},
-	h1Text: {
-		fontFamily: theme.font.styleBold,
-		fontSize: width * 0.07
-	},
-	pText: {
-		fontFamily: theme.font.minimal,
-		fontSize: width * 0.04,
-		opacity: 0.5
-	},
-	form: {
-		justifyContent: 'space-between',
-		height: height / 1.43,
-	},
-	formInput: {
-		gap: 20,
-	},
-	
-	labelText: {
-		fontFamily: theme.font.minimal
-	},
-	
-	inputContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		borderWidth: 1,
-		borderColor: '#E6E6E6',
-		backgroundColor: '#F2F2F2',
-		borderRadius: 50,
-		position: 'relative',
-		overflow: 'hidden',
-		gap: 20
-	},
-	inputImage: {
-		backgroundColor: 'white',
-		padding: 17,
-		borderTopLeftRadius: 50,
-		borderBottomLeftRadius: 50,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	inputIcon: {
-		width: 25,
-		height: 25
-	},
-	submitButton: {
-		backgroundColor: theme.color.primary,
-		fontFamily: theme.font.minimal,
-		alignSelf: 'center',
-		paddingHorizontal: 95,
-		paddingVertical: 25,
-		borderRadius: 40,
-	},
-	submitButtonText: {
-		fontFamily: theme.font.minimal,
-		color: 'white',
-		fontSize: width * 0.03
-
-	},
-	loginText: {
-		fontFamily: theme.font.minimal,
-		textAlign: 'center',
-		opacity: 0.5
-	}
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    screenContent: {
+        paddingHorizontal: 30,
+        paddingTop: 30,
+        paddingBottom: 60,
+        gap: 25,
+    },
+    formHead: {
+        gap: 8
+    },
+    h1Text: {
+        fontFamily: theme.font.styleBold,
+        fontSize: width * 0.07
+    },
+    pText: {
+        fontFamily: theme.font.minimal,
+        fontSize: width * 0.04,
+        opacity: 0.5
+    },
+    form: {
+        justifyContent: 'space-between',
+        height: height / 1.4,
+    },
+    formInput: {
+        gap: 20,
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#E6E6E6',
+        backgroundColor: '#F2F2F2',
+        borderRadius: 50,
+        position: 'relative',
+        overflow: 'hidden',
+        gap: 20
+    },
+    inputImage: {
+        backgroundColor: 'white',
+        padding: 17,
+        borderTopLeftRadius: 50,
+        borderBottomLeftRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    inputIcon: {
+        width: 25,
+        height: 25
+    },
+    loginText: {
+        fontFamily: theme.font.minimal,
+        textAlign: 'center',
+        opacity: 0.5
+    }
 });
