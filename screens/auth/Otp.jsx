@@ -122,12 +122,10 @@ styles = StyleSheet.create({
     },
     otpInput: {
         flexDirection: 'row',
-        // width: width,
         gap: 10,
         justifyContent: 'center',
     },
     roundInput: {
-        // width: width / 7 ,
         borderWidth: 1,
         borderColor: '#E6E6E6',
         backgroundColor: '#F2F2F2',
