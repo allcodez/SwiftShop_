@@ -13,7 +13,7 @@ export default function SignUp({ navigation }) {
     };
 
     const handleLogin = () =>{
-
+        navigation.push('Login');
     }
 
     return (

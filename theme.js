@@ -15,7 +15,7 @@ export const theme = {
     font: {
         minimal: 'CircularStd-Regular',
         styleBold: 'Syne-Bold',
-
+        styleRegular: 'Syne-Regular',
     }
 
 };

@@ -10,6 +10,7 @@ const customFonts = {
   'Syne-Medium': require('./assets/fonts/Syne-Medium.ttf'),
   'Syne-Bold': require('./assets/fonts/Syne-Bold.ttf'),
   'Syne-Extra-Bold': require('./assets/fonts/Syne-ExtraBold.ttf'),
+  'Syne-Regular': require('./assets/fonts/Syne-Regular.ttf'),
   // 'Inter-SemiBoldItalic': 'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
 };
 

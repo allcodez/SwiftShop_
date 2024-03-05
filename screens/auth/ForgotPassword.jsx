@@ -18,7 +18,7 @@ export default function ForgotPassword({ navigation }) {
 
     return (
         <SafeAreaView style={globalStyle.screenContainer}>
-            <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+            <KeyboardAvoidingView style={styles.formContainer} behavior="padding" enabled>
                 <ScrollView>
                     <View style={styles.screenContent}>
                         <View style={styles.formHead}>
@@ -66,13 +66,12 @@ export default function ForgotPassword({ navigation }) {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
     },
     formContainer: {
         flex: 1,
-        backgroundColor: 'green'
     },
     screenContent: {
         paddingHorizontal: 30,

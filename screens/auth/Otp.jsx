@@ -45,7 +45,7 @@ export default function Otp({ navigation }) {
 
                                         <TextInput
                                             style={styles.roundInput}
-                                            onChangeText={props.handleChange('otpInput')}
+                                            onChangeText={props.handleChange('otpInput2')}
                                             value={props.values.otpInput2}
                                             keyboardType='numeric'
                                         />
@@ -96,7 +96,7 @@ export default function Otp({ navigation }) {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
     },

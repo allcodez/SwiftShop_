@@ -23,12 +23,12 @@ const LoadingScreen = ({ navigation }) => {
     preloadImages();
   }, []);
 
-  useEffect(() => {
-    if (!loading) {
-      // Navigate to your main screen or initial routes
-      navigation.replace('GetStarted'); // Replace 'MainScreen' with your actual screen name
-    }
-  }, [loading, navigation]);
+  // useEffect(() => {
+  //   if (!loading) {
+  //     // Navigate to your main screen or initial routes
+  //     navigation.push('GetStarted'); // Replace 'MainScreen' with your actual screen name
+  //   }
+  // }, [loading, navigation]);
 
   return (
     <View style={styles.container}>

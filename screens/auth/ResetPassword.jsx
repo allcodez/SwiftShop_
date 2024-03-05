@@ -4,12 +4,11 @@ import { Formik } from 'formik'
 import { theme } from '../../theme'
 import { globalStyle } from '../../globalStyle'
 import { useNavigation } from '@react-navigation/native'
-import { setItem } from '../../utils/asyncStorage';
 
 
 const { width, height } = Dimensions.get('window')
 
-export default function ResetPassword( ) {
+export default function ResetPassword({ navigation }) {
 
     // const cratetPassword = () => {
     //     navigation.navigate('Home');
@@ -18,11 +17,10 @@ export default function ResetPassword( ) {
     const handleLogin = () => {
 
     }
-    const navigation = useNavigation();
+
 
     const cratetPassword = () => {
-        navigation.navigate('Home');
-        setItem('onboarded', '1');
+        navigation.push('Login')
     }
 
     return (
@@ -84,7 +82,7 @@ export default function ResetPassword( ) {
     )
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
     },

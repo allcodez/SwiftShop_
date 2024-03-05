@@ -1,28 +1,25 @@
-import React from 'react'
-import { TextInput, View, Text, StyleSheet, SafeAreaView, Dimensions, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native'
-import { Formik } from 'formik'
-import { theme } from '../../theme'
-import { globalStyle } from '../../globalStyle'
-import { useNavigation } from '@react-navigation/native'
+import React from 'react';
+import { TextInput, View, Text, StyleSheet, SafeAreaView, Dimensions, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { Formik } from 'formik';
+import { theme } from '../../theme';
+import { globalStyle } from '../../globalStyle';
+import { setItem } from '../../utils/asyncStorage';
 
-const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window');
 
 export default function Login({ navigation }) {
-
     const handleForgetPassword = () => {
-        navigation.push('ForgotPassword')
-    }
+        navigation.push('ForgotPassword');
+    };
 
+    const handleSignUp = () => {
+        navigation.push('SignUp');
+    };
+    
     const handleLogin = () => {
-
-    }
-
-    // const navigation = useNavigation();
-
-    // const handleDone = () => {
-    //     navigation.navigate('Home');
-    //     setItem('onboarded', '1');
-    // }
+        navigation.push('Tabs'); // Navigate to the 'Home' screen in the tab navigator
+        setItem('onboarded', '2');
+    };
 
     return (
         <SafeAreaView style={globalStyle.screenContainer}>
@@ -37,7 +34,8 @@ export default function Login({ navigation }) {
                         <Formik
                             initialValues={{ email: '', password: '' }}
                             onSubmit={(values) => {
-                                console.log(values)
+                                console.log(values);
+                                handleLogin();
                             }}
                         >
                             {(props) => (
@@ -71,7 +69,7 @@ export default function Login({ navigation }) {
                                             <Text style={globalStyle.solidButtonText}>SIGN IN</Text>
                                         </TouchableOpacity>
 
-                                        <TouchableOpacity style={globalStyle.href} onPress={handleLogin}>
+                                        <TouchableOpacity style={globalStyle.href} onPress={handleSignUp}>
                                             <Text style={globalStyle.pText}>I don’t have an account. Sign up</Text>
                                         </TouchableOpacity>
                                     </View>
@@ -87,16 +85,12 @@ export default function Login({ navigation }) {
 
 
         </SafeAreaView>
-    )
+    );
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
-    },
-    formContainer: {
-        flex: 1,
-        backgroundColor: 'green'
     },
     screenContent: {
         paddingHorizontal: 30,
@@ -125,4 +119,4 @@ styles = StyleSheet.create({
     forgetPassword: {
         alignSelf: 'flex-end',
     }
-})
+});
