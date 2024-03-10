@@ -1,6 +1,8 @@
 import React from 'react'
 import { Dimensions, StyleSheet, View, Text, ImageBackground, TouchableOpacity, SafeAreaView } from 'react-native'
 import { theme } from '../../theme'
+import {globalStyle} from '../../globalStyle.js'
+
 
 const { width, height } = Dimensions.get('window')
 
@@ -27,8 +29,8 @@ export default function OnboardingOne({ navigation }) {
                         <View style={styles.sliderObject}></View>
                     </View>
 
-                    <TouchableOpacity style={styles.boardButton} onPress={handleContinue}>
-                        <Text style={styles.buttonText}>CONTINUE</Text>
+                    <TouchableOpacity style={globalStyle.solidButton} onPress={handleContinue}>
+                        <Text style={globalStyle.solidButtonText}>CONTINUE</Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, ImageBackground, StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
-
+import {globalStyle} from '../globalStyle.js'
 const { width, height } = Dimensions.get('window');
 
 export default function GetStarted({ navigation }) {
@@ -36,8 +36,8 @@ export default function GetStarted({ navigation }) {
                         style={styles.logo}
                         source={logoWhiteSource}
                     />
-                    <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted}>
-                        <Text style={styles.buttonText}>GET STARTED</Text>
+                    <TouchableOpacity style={[styles.getStartedButton, globalStyle.solidButton]} onPress={handleGetStarted}>
+                        <Text style={globalStyle.solidButtonText}>GET STARTED</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
@@ -72,10 +72,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 60, // Adjust as needed
         alignSelf: 'center',
-        backgroundColor: '#6654E7',
-        paddingHorizontal: 85,
-        paddingVertical: 20,
-        borderRadius: 40,
     },
     buttonText: {
         fontFamily: 'Circular-Std-Medium',

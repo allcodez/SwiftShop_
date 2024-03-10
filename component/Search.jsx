@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, SafeAreaView, KeyboardAvoidingView, ScrollView, Image, TextInput } from 'react-native';
-import Setting from '../../assets/svg/Settings.js'
-import SearchOutline from '../../assets/svg/SearchOutline.js';
+import Settings from '../assets/svg/Settings.js'
+import SearchOutline from '../assets/svg/SearchOutline.js';
 
 
-export default function SearchScreen() {
+export default function SearchBar() {
     return (
         <View style={styles.search}>
             <View style={styles.searchBox}>
@@ -13,13 +13,14 @@ export default function SearchScreen() {
                     placeholder='Food, Restaurants, Stores'
                 />
             </View>
-            <Setting />
+            <Settings />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     search: {
+        paddingHorizontal: 25,
         flexDirection: 'row',
         gap: 25,
         alignItems: 'center',

@@ -8,6 +8,13 @@ export const globalStyle = StyleSheet.create({
 		backgroundColor: '#ffffff',
 		flex: 1,
 	},
+    screenContent: {
+        // paddingHorizontal: 25,
+        // height: height,
+        flex: 1,
+        paddingVertical: 10,
+        // height: height,
+    },
     input: {
 		padding: 20,
 		borderWidth: 1,
@@ -54,10 +61,35 @@ export const globalStyle = StyleSheet.create({
     },
 	pText: {
         fontFamily: theme.font.minimal,
-        fontSize: width * 0.039,
+        fontSize: theme.fontSize.medium,
         color: theme.color.lightText
+    },
+    contentText:{
+        fontFamily: theme.font.styleBold,
+        fontSize: theme.fontSize.medium,
+        color: '#2b2b2b'
+    },
+    offerPrice:{
+        fontFamily: theme.font.minimal,
+        fontSize: theme.fontSize.medium,
+        color: theme.color.black
+    },
+    hText:{
+        fontFamily: theme.font.styleBold,
+        fontSize: theme.fontSize.large,
     },
 	href:{
 		alignSelf: 'center'
-	}
+	},
+    screenPlaceholder:{
+        // height: height,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'red'
+    },
+    placeholderImage:{
+        width: '60%',
+        height: 200,
+    }
 })

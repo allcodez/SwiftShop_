@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Text, TouchableOpacity, Dimensions, Image } from 'react-native'
+import {globalStyle} from '../../globalStyle.js'
 
 const { width, height } = Dimensions.get('window');
 
@@ -25,11 +26,11 @@ export default function UserType({navigation}) {
 
 
                 <View style={styles.boardButton}>
-                    <TouchableOpacity style={styles.orderButton} onPress={handleOrder}>
-                        <Text style={styles.orderButtonText}>ORDER MEALS AND OTHERS</Text>
+                    <TouchableOpacity style={globalStyle.solidButton} onPress={handleOrder}>
+                        <Text style={globalStyle.solidButtonText}>ORDER MEALS AND OTHERS</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.sellButton}>
-                        <Text style={styles.sellButtonText}>SELL AND REACH MORE</Text>
+                    <TouchableOpacity style={globalStyle.outlineButton}>
+                        <Text style={globalStyle.outlineButtonText}>SELL AND REACH MORE</Text>
                     </TouchableOpacity>
                 </View>
 
