@@ -20,6 +20,8 @@ export const theme = {
     },
     font: {
         minimal: 'CircularStd-Regular',
+        light: 'CircularStd-Light',
+        bold: 'Circular-Std-Bold',
         styleBold: 'Syne-Bold',
         styleRegular: 'Syne-Regular',
         styleMedium: 'Syne-Medium'

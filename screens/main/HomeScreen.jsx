@@ -44,30 +44,30 @@ const sliderData = [
 ];
 
 
-export default function HomeScreen() {
-    const navigation = useNavigation();
+export default function HomeScreen({ navigation }) {
+    // const navigation = useNavigation();
 
-    useEffect(() => {
-        // Call the function to display storage content
-        displayStorageContent();
-        const unsubscribe = navigation.addListener('beforeRemove', () => {
-            // Prevent default behavior of navigating back
-            navigation.dispatch((state) => {
-                // Reset navigation state to the initial state
-                const routes = state.routes.filter((r) => r.name === 'Home');
-                return routes;
-            });
+    // useEffect(() => {
+    //     // Call the function to display storage content
+    //     displayStorageContent();
+    //     const unsubscribe = navigation.addListener('beforeRemove', () => {
+    //         // Prevent default behavior of navigating back
+    //         navigation.dispatch((state) => {
+    //             // Reset navigation state to the initial state
+    //             const routes = state.routes.filter((r) => r.name === 'Home');
+    //             return routes;
+    //         });
 
-            // Log onboarded value
-            AsyncStorage.getItem('onboarded').then((value) => {
-                console.log('onboarded:', value);
-            }).catch((error) => {
-                console.error('Error retrieving onboarded value:', error);
-            });
-        });
+    //         // Log onboarded value
+    //         AsyncStorage.getItem('onboarded').then((value) => {
+    //             console.log('onboarded:', value);
+    //         }).catch((error) => {
+    //             console.error('Error retrieving onboarded value:', error);
+    //         });
+    //     });
 
-        return unsubscribe;
-    }, [navigation]);
+    //     return unsubscribe;
+    // }, [navigation]);
 
     // Function to display all items in AsyncStorage
     const displayStorageContent = async () => {
@@ -175,7 +175,7 @@ export default function HomeScreen() {
                         </View>
 
                         <View>
-                            <Offer />
+                            <Offer navigation={navigation}/>
                         </View>
                     </View>
                 </ScrollView>

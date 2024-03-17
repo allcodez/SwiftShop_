@@ -6,10 +6,10 @@ import Favourite from '../../assets/svg/Favourite.js'
 
 const { width } = Dimensions.get('window');
 
-// Modify the CraveScreen component to receive categories as props
+// Modify the CraveScreen component to receive craveCategories as props
 export default function CraveScreen({ route }) {
-    const { categories } = route.params;
-    const [activeCategory, setActiveCategory] = useState(categories[0].id);
+    const { craveCategories } = route.params;
+    const [activeCategory, setActiveCategory] = useState(craveCategories[0].id);
 
     const handleCategoryPress = (categoryId) => {
         setActiveCategory(categoryId);
@@ -18,7 +18,7 @@ export default function CraveScreen({ route }) {
     return (
         <View style={globalStyle.screenContainer}>
             <View style={styles.category}>
-                {categories.map(category => (
+                {craveCategories.map(category => (
                     <TouchableOpacity
                         key={category.id}
                         style={[
@@ -36,10 +36,12 @@ export default function CraveScreen({ route }) {
                 ))}
             </View>
             <View style={globalStyle.screenPlaceholder}>
-            <Favourite/>
+                <Favourite />
                 {/* <Image style={globalStyle.placeholderImage} source={require('../../assets/rafiki.png')} /> */}
-                <Text>There is no favourite yet</Text>
-                <Text>Select your favourite restaurants, stores</Text>
+                <View style={globalStyle.placeholderText}>
+                    <Text style={globalStyle.placeholderBigText}>There is no favourite yet</Text>
+                    <Text style={globalStyle.placeholderSmallText}>Select your favourite restaurants, stores</Text>
+                </View>
             </View>
         </View>
 
@@ -76,40 +78,3 @@ const styles = StyleSheet.create({
     },
 });
 
-
-
-
-
-
-
-
-
-
-
-
-{/* <SafeAreaView style={globalStyle.screenContainer}>
-            <ScrollView style={globalStyle.screenContent}>
-                <View style={styles.category}>
-                    {categories.map(category => (
-                        <TouchableOpacity
-                            key={category.id}
-                            style={[
-                                styles.categoryButton,
-                                activeCategory === category.id ? styles.categoryActive : styles.categoryInactive
-                            ]}
-                            onPress={() => handleCategoryPress(category.id)}
-                        >
-                            <Text style={[
-                                activeCategory === category.id ? styles.categoryActiveText : styles.categoryInactiveText
-                            ]}>
-                                {category.name}
-                            </Text>
-                        </TouchableOpacity>
-                    ))}
-                </View>
-                <View style={globalStyle.screenPlaceholder}>
-                    <Text>There is no favourite yet</Text>
-                    <Text>Select your favourite restaurants, stores</Text>
-                </View>
-            </ScrollView>
-        </SafeAreaView> */}

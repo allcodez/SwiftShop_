@@ -8,7 +8,6 @@ import SearchBar from '../../component/Search.jsx';
 import Offer from '../../component/Offers.jsx'
 
 
-
 export default function SearchScreen() {
     const [activeFilter, setActiveFilter] = useState('All');
 
@@ -17,7 +16,7 @@ export default function SearchScreen() {
         { id: 1, label: 'All' },
         { id: 2, label: 'Food' },
         { id: 3, label: 'Supermarket' },
-        { id: 4, label: 'Pharmacy' }
+        { id: 4, label: 'Pharmacy' },
     ];
 
     return (

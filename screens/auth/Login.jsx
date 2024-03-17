@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
     };
     
     const handleLogin = () => {
-        navigation.push('Tabs'); // Navigate to the 'Home' screen in the tab navigator
+        navigation.replace('Tabs'); // Navigate to the 'Home' screen in the tab navigator
         setItem('onboarded', '2');
     };
 

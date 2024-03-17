@@ -14,7 +14,7 @@ export default function GetStarted({ navigation }) {
     const handleGetStarted = () => {
         // navigation.replace('OnboardingScreen');
         // navigation.push('UserType');
-        navigation.push('Login');
+        navigation.replace('Login');
     }
 
     // const [loaded] = useFonts({

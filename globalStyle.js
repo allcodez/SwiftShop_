@@ -1,36 +1,36 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { theme } from './theme';
 
-const {width, height} = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
 export const globalStyle = StyleSheet.create({
     screenContainer: {
-		backgroundColor: '#ffffff',
-		flex: 1,
-	},
+        backgroundColor: '#ffffff',
+        flex: 1,
+    },
     screenContent: {
         // paddingHorizontal: 25,
         // height: height,
-        flex: 1,
+        // flex: 1,
         paddingVertical: 10,
         // height: height,
     },
     input: {
-		padding: 20,
-		borderWidth: 1,
-		borderColor: '#E6E6E6',
-		backgroundColor: '#F2F2F2',
-		borderRadius: 50
-	},
-    label: {
-		gap: 15
-	},
-	labelText: {
-        fontFamily: theme.font.minimal,
-		fontSize: width * 0.039,
-		color: theme.color.labelText,
+        padding: 20,
+        borderWidth: 1,
+        borderColor: '#E6E6E6',
+        backgroundColor: '#F2F2F2',
+        borderRadius: 50
     },
-	solidButton: {
+    label: {
+        gap: 15
+    },
+    labelText: {
+        fontFamily: theme.font.minimal,
+        fontSize: width * 0.039,
+        color: theme.color.labelText,
+    },
+    solidButton: {
         backgroundColor: theme.color.primary,
         fontFamily: theme.font.minimal,
         alignSelf: 'center',
@@ -44,8 +44,8 @@ export const globalStyle = StyleSheet.create({
         color: 'white',
         fontSize: width * 0.034,
     },
-	outlineButton: {
-		alignSelf: 'center',
+    outlineButton: {
+        alignSelf: 'center',
         borderColor: theme.color.primary,
         fontFamily: theme.font.minimal,
         borderWidth: 1,
@@ -54,42 +54,80 @@ export const globalStyle = StyleSheet.create({
         borderRadius: 40,
         alignItems: 'center',
     },
+    outlineDefaultButton:{
+        alignSelf: 'center',
+        borderColor: theme.color.primary,
+        fontFamily: theme.font.minimal,
+        borderWidth: 1,
+        paddingVertical: 10,
+        paddingHorizontal: 18,
+        borderRadius: 40,
+        alignItems: 'center',
+    },
     outlineButtonText: {
         fontFamily: theme.font.minimal,
         fontSize: width * 0.034,
         color: theme.color.primary
     },
-	pText: {
+    outlineDefaultButtonText:{
+        fontFamily: theme.font.bold,
+        fontSize: width * 0.034,
+        color: theme.color.primary
+    },
+    pText: {
         fontFamily: theme.font.minimal,
         fontSize: theme.fontSize.medium,
         color: theme.color.lightText
     },
-    contentText:{
+    contentText: {
         fontFamily: theme.font.styleBold,
         fontSize: theme.fontSize.medium,
         color: '#2b2b2b'
     },
-    offerPrice:{
+    offerPrice: {
         fontFamily: theme.font.minimal,
         fontSize: theme.fontSize.medium,
         color: theme.color.black
     },
-    hText:{
+    hText: {
         fontFamily: theme.font.styleBold,
         fontSize: theme.fontSize.large,
     },
-	href:{
-		alignSelf: 'center'
-	},
-    screenPlaceholder:{
+    href: {
+        alignSelf: 'center'
+    },
+    screenPlaceholder: {
         // height: height,
-        flex: 1,
+        flex: 0.85,
         justifyContent: 'center',
         alignItems: 'center',
+        gap: 20
         // backgroundColor: 'red'
     },
-    placeholderImage:{
-        width: '60%',
-        height: 200,
+    placeholderImage: {
+        width: '50%',
+        height: height * 0.17,
+    },
+    placeholderImage3: {
+        width: '50%',
+        height: height * 0.2,
+    },
+    placeholderText: {
+        alignItems: 'center',
+        gap: 5
+    },
+    placeholderBigText: {
+        fontFamily: theme.font.styleBold,
+        fontSize: width * 0.038
+    },
+    placeholderSmallText: {
+        fontFamily: theme.font.minimal,
+        color: 'grey'
+    },
+    shadow: {
+        shadowColor: '#171717',
+        shadowOffset: { width: -4, height: 1 },
+        shadowOpacity: 0.13,
+        shadowRadius: 10,
     }
 })

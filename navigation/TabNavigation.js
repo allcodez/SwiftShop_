@@ -19,11 +19,14 @@ import { Dimensions } from 'react-native';
 const Tab = createBottomTabNavigator();
 const { width, height } = Dimensions.get('window')
 
-// Define the categories array here
-const categories = [
+const craveCategories = [
     { id: 1, name: 'Vendor' },
     { id: 2, name: 'Food' },
-    // Add more categories as needed
+];
+
+const orderCategories = [
+    { id: 1, name: 'Current' },
+    { id: 2, name: 'Previous' },
 ];
 
 export default function TabNavigation() {
@@ -97,7 +100,7 @@ export default function TabNavigation() {
                 <Tab.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
                 <Tab.Screen options={{ headerShown: false }} name="Search" component={SearchScreen} />
                 <Tab.Screen name="Crave" component={CraveScreen}
-                    initialParams={{ categories: categories }} // Pass categories as initialParams
+                    initialParams={{ craveCategories: craveCategories }} // Pass craveCategories as initialParams
                     options={({ route }) => ({
                         headerTitle: route.name === 'Crave' ? 'Favourites' : 'Crave', // Set headerTitle dynamically
                         headerTitleStyle: {
@@ -112,8 +115,33 @@ export default function TabNavigation() {
                         }
                     })}
                 />
-                <Tab.Screen options={{ headerShown: false }} name="Order" component={OrderScreen} />
-                <Tab.Screen options={{ headerShown: false }} name="Cart" component={CartScreen} />
+                <Tab.Screen name="Order" component={OrderScreen}
+                    initialParams={{ orderCategories: orderCategories }} 
+                    options={() => ({
+                        headerTitleStyle: {
+                            fontFamily: theme.font.styleBold,
+                            fontSize: width * 0.075,
+                            padding: 20
+                        },
+                        headerStyle: {
+                            height: 120,
+                            shadowOffset: { width: 0, height: 0 }
+                        }
+                    })}
+                />
+                <Tab.Screen name="Cart" component={CartScreen} 
+                    options={() => ({
+                        headerTitleStyle: {
+                            fontFamily: theme.font.styleBold,
+                            fontSize: width * 0.075,
+                            padding: 20
+                        },
+                        headerStyle: {
+                            height: 120,
+                            shadowOffset: { width: 0, height: 0 }
+                        }
+                    })}
+                />
             </Tab.Navigator>
         );
     } else {

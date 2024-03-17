@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Image, ImageBackground, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, ImageBackground, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import Trophy from '../assets/svg/Trophy.js';
 import Flame from '../assets/svg/Flame.js';
 import Heart from '../assets/svg/Heart.js';
 import Star from '../assets/svg/Star.js';
 import { theme } from '../theme.js';
+import Restaurant from '../screens/menu/Restaurant.jsx';
 
 const { width, height } = Dimensions.get('window');
 
@@ -41,11 +42,21 @@ const offerData = [
   // Add more offer objects as needed
 ];
 
-export default function Offer() {
+export default function Offer({ navigation }) {
+
+  const handleNavigation = () => {
+    // Navigate to the specified screen
+    navigation.navigate('Restaurant');
+  };
+
   return (
     <View style={styles.offer}>
       {offerData.map((offer, index) => (
-        <View style={styles.offerContainer} key={index}>
+        <TouchableOpacity
+          style={styles.offerContainer}
+          key={index}
+          onPress={() => handleNavigation()} // Change 'DetailsScreen' to the desired screen name
+        >
           <View style={styles.offerImageContainer}>
             <ImageBackground style={styles.offerImage} source={offer.image}>
               <View style={styles.offerImageContent}>
@@ -74,7 +85,7 @@ export default function Offer() {
             </View>
             <Text style={styles.offerPrice}>{offer.price}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

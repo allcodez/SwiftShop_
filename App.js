@@ -7,6 +7,7 @@ const customFonts = {
   'Circular-Std-Medium': require('./assets/fonts/CircularStd-Medium.otf'),
   'Circular-Std-Bold': require('./assets/fonts/circular-std-bold.ttf'),
   'CircularStd-Regular': require('./assets/fonts/CircularStd-Regular.otf'),
+  'CircularStd-Light': require('./assets/fonts/CircularStd-Light.otf'),
   'Syne-Medium': require('./assets/fonts/Syne-Medium.ttf'),
   'Syne-Bold': require('./assets/fonts/Syne-Bold.ttf'),
   'Syne-Extra-Bold': require('./assets/fonts/Syne-ExtraBold.ttf'),
