@@ -91,9 +91,9 @@ export default function Restaurant({ navigation }) {
     return (
         <ScrollView>
             <View style={globalStyle.screenContainer}>
-                <ImageBackground source={restaurantCoverImg} style={styles.resturantHeader} resizeMode="cover">
+                <ImageBackground source={restaurantCoverImg} style={globalStyle.resturantHeader} resizeMode="cover">
 
-                    <View style={styles.headerIcon}>
+                    <View style={globalStyle.headerIcon}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <ArrowLeft />
                         </TouchableOpacity>
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
         gap: 5,
     },
     restaurantName: {
-        fontSize: theme.fontSize.large * 1.3,
+        fontSize: theme.fontSize.large * 1.4,
         fontFamily: theme.font.styleBold,
     },
 

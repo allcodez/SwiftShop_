@@ -39,10 +39,22 @@ export const globalStyle = StyleSheet.create({
         borderRadius: 40,
         alignItems: 'center',
     },
+    solidDefaultButton:{
+        backgroundColor: theme.color.primary,
+        fontFamily: theme.font.minimal,
+        alignSelf: 'center',
+        borderRadius: 40,
+        alignItems: 'center',
+    },
     solidButtonText: {
         fontFamily: theme.font.minimal,
         color: 'white',
         fontSize: width * 0.034,
+    },
+    solidDefaultButtonText: {
+        fontFamily: theme.font.minimal,
+        color: 'white',
+        // fontSize: width * 0.034,
     },
     outlineButton: {
         alignSelf: 'center',
@@ -58,9 +70,7 @@ export const globalStyle = StyleSheet.create({
         alignSelf: 'center',
         borderColor: theme.color.primary,
         fontFamily: theme.font.minimal,
-        borderWidth: 1,
-        paddingVertical: 10,
-        paddingHorizontal: 18,
+        borderWidth: 1,      
         borderRadius: 40,
         alignItems: 'center',
     },
@@ -129,5 +139,34 @@ export const globalStyle = StyleSheet.create({
         shadowOffset: { width: -4, height: 1 },
         shadowOpacity: 0.13,
         shadowRadius: 10,
+    },
+    resturantHeader: {
+        height: height * 0.24,
+        backgroundColor: 'red',
+        paddingVertical: 50,
+        paddingHorizontal: 25,
+    },
+    headerIcon: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    headerIconButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#F6F6F680',
+        borderRadius: 100,
+        padding: 5,
+    },
+    userCartContainer:{
+        position: 'absolute',
+        bottom: 0,
+        backgroundColor: 'grey',
+        width: width,
+        paddingTop: 20,
+        paddingHorizontal: 20,
+        paddingBottom: 35
+    },
+    userCartText:{
+        fontSize: width * 0.04
     }
 })

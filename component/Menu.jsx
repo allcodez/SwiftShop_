@@ -2,10 +2,19 @@ import React from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { globalStyle } from '../globalStyle';
 import { theme } from '../theme';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 export default function Menu({ menuData }) {
+
+    const navigation = useNavigation()
+
+    const handleAddPress = (item) => {
+        // Navigate to FoodDetails screen and pass the food details as params
+        navigation.navigate('FoodDetails', { foodDetails: item });
+    };
+
     return (
         <View style={[styles.menuContainer,globalStyle.shadow]}>
             {menuData.map((item) => (
@@ -18,7 +27,9 @@ export default function Menu({ menuData }) {
                         </View>
                         <View style={styles.menuDetailContent2}>
                             <Text style={styles.menuPrice}>{item.FoodPrice}</Text>
-                            <TouchableOpacity style={globalStyle.outlineDefaultButton}>
+                            <TouchableOpacity style={[globalStyle.outlineDefaultButton, styles.menuAdd]}
+                                onPress={() => handleAddPress(item)}
+                            >
                                 <Text style={globalStyle.outlineDefaultButtonText}>ADD +</Text>
                             </TouchableOpacity>
                         </View>
@@ -83,4 +94,8 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontWeight: 'bold',
     },
+    menuAdd:{
+        paddingVertical: 10,
+        paddingHorizontal: 18,
+    }
 });

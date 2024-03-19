@@ -25,6 +25,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TabNavigation from './TabNavigation.js';
 import Restaurant from '../screens/menu/Restaurant.jsx';
+import FoodDetails from '../screens/menu/FoodDetails.jsx'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,8 +49,8 @@ export default function AppNavigation() {
           <Stack.Screen name="ForgotPassword" options={{ headerShown: false }} component={ForgotPassword} />
           <Stack.Screen name="Otp" options={{ headerShown: false }} component={Otp} />
           <Stack.Screen name="ResetPassword" options={{ headerShown: false }} component={ResetPassword} />
-          <Stack.Screen name="Restaurant" component={Restaurant} options={{ headerShown: false }}
-          />
+          <Stack.Screen name="Restaurant" component={Restaurant} options={{ headerShown: false }} />
+          <Stack.Screen name="FoodDetails" component={FoodDetails} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
       </>
