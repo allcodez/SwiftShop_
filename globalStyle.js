@@ -160,8 +160,10 @@ export const globalStyle = StyleSheet.create({
     userCartContainer:{
         position: 'absolute',
         bottom: 0,
-        backgroundColor: 'grey',
+        backgroundColor: 'white',
         width: width,
+        borderTopWidth: 1,
+        borderTopColor: '#f4f4f4',
         paddingTop: 20,
         paddingHorizontal: 20,
         paddingBottom: 35

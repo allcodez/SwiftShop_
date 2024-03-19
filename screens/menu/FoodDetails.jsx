@@ -6,6 +6,7 @@ import Heart from '../../assets/svg/CraveOutline';
 import { theme } from '../../theme';
 import UserCart from '../../component/UserCart';
 import MenuCombo from '../../component/MenuCombo';
+import OptionalCombo from '../../component/OptionalCombo';
 
 const { width, height } = Dimensions.get('window')
 
@@ -43,8 +44,9 @@ export default function FoodDetails({ route, navigation }) {
                     <Text style={styles.deatilsDesc}>{foodDetails.FoodDesc}</Text>
                 </View>
 
-                <View>
+                <View style={styles.combo}>
                     <MenuCombo />
+                    <OptionalCombo />
                 </View>
 
             </ScrollView>
@@ -86,4 +88,8 @@ const styles = StyleSheet.create({
         color: theme.color.lightText,
         fontFamily: theme.font.light,
     },
+    combo:{
+        gap: 20,
+        marginBottom: 150
+    }
 })

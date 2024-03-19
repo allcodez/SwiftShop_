@@ -1,11 +1,18 @@
 import Recat from 'react'
 import { Text, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native'
 import { globalStyle } from '../globalStyle'
+import { useNavigation } from '@react-navigation/native'
 
 const { width, height } = Dimensions.get('window')
 
 
 export default function UserCart({price}) {
+    const navigation = useNavigation()
+
+    const handleAddToCart = ()=>{
+        navigation.goBack()
+    }
+
     return (
         <View style={styles.userCart}>
             <View style={[globalStyle.outlineDefaultButton, styles.cartQuantity]}>
@@ -17,7 +24,7 @@ export default function UserCart({price}) {
                     <Text style={[globalStyle.outlineDefaultButtonText, styles.quantityCartText]}>+</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={[styles.cartAdd, globalStyle.solidDefaultButton]}>
+            <TouchableOpacity style={[styles.cartAdd, globalStyle.solidDefaultButton]} onPress={handleAddToCart}>
                 <Text style={[globalStyle.userCartText, globalStyle.solidDefaultButtonText]}>ADD TO CART {price}</Text>
             </TouchableOpacity>
         </View>
