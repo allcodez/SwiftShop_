@@ -13,7 +13,7 @@ const RadioButton = () => {
 
   return (
     <TouchableOpacity style={[styles.radio, radioOnclcik && styles.radioOnclcik]} onPress={handlePress}>
-      <View style={[styles.radioOnclcik, selected && styles.selected]} />
+      <View style={[selected && styles.selected]} />
     </TouchableOpacity>
   );
 };
