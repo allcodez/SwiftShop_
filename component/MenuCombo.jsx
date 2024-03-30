@@ -1,40 +1,52 @@
-import React from 'react';
+// MenuCombo.js
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Check from '../assets/svg/Check';
 import { theme } from '../theme';
 import RadioButton from './RadioButton';
 import { globalStyle } from '../globalStyle';
 
-// Define your combo data as a JSON object
 const comboData = [
   { id: 1, name: 'Smoked Fish' },
   { id: 2, name: 'Boiled Egg' },
   { id: 3, name: 'Beef' },
 ];
 
-export default function MenuCombo() {
+export default function MenuCombo({ onSelectCombo }) {
+  const [selectedComboId, setSelectedComboId] = useState(null);
+
+  const handleSelectCombo = (name) => {
+    setSelectedComboId(name);
+    onSelectCombo(name); // Call the callback function with the selected combo
+  };
+
   return (
     <View style={styles.comboContainer}>
       <View style={styles.comboHead}>
         <Text style={styles.comboHeadText}>Select Combo</Text>
         <View style={styles.comboCheck}>
-          <Check color='#61605F' />
+          <Check color="#61605F" />
           <Text style={styles.comboHeadText}>Required</Text>
         </View>
       </View>
 
       <View style={styles.comboList}>
-        {/* Map through the comboData to render each combo option */}
         {comboData.map((combo) => (
           <View style={[styles.comboListBox, globalStyle.shadow]} key={combo.id}>
             <Text style={styles.comboListText}>{combo.name}</Text>
-            <RadioButton />
+            <RadioButton
+              selected={selectedComboId === combo.name}
+              onPress={() => handleSelectCombo(combo.name)}
+            />
           </View>
         ))}
       </View>
     </View>
   );
 }
+
+// Styles remain the same
+
 
 const styles = StyleSheet.create({
   comboContainer: {},

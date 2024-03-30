@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+// RadioButton.js
+import React from 'react';
+import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { theme } from '../theme';
 
-const RadioButton = () => {
-  const [selected, setSelected] = useState(false);
-  const [radioOnclcik, setRadioOnclcik] = useState(false);
-
-  const handlePress = () => {
-    setSelected(!selected);
-    setRadioOnclcik(!radioOnclcik)
-  };
-
+export default function RadioButton ({ selected, onPress }) {
   return (
-    <TouchableOpacity style={[styles.radio, radioOnclcik && styles.radioOnclcik]} onPress={handlePress}>
-      <View style={[selected && styles.selected]} />
+    <TouchableOpacity style={[styles.radio, selected && styles.radioSelected]} onPress={onPress}>
+      {selected && <View style={styles.selected} />}
     </TouchableOpacity>
   );
 };
@@ -22,21 +15,20 @@ const styles = StyleSheet.create({
   radio: {
     width: 24,
     height: 24,
-    borderRadius: 100,
+    borderRadius: 12,
     borderWidth: 2,
     borderColor: '#8C9196',
     backgroundColor: 'transparent',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  radioOnclcik:{
+  radioSelected: {
     borderColor: theme.color.primary,
   },
   selected: {
-    padding: 8,
+    width: 15,
+    height: 15,
     borderRadius: 100,
     backgroundColor: theme.color.primary,
   },
 });
-
-export default RadioButton;

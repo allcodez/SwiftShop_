@@ -51,6 +51,7 @@ export default function AppNavigation() {
           <Stack.Screen name="ResetPassword" options={{ headerShown: false }} component={ResetPassword} />
           <Stack.Screen name="Restaurant" component={Restaurant} options={{ headerShown: false }} />
           <Stack.Screen name="FoodDetails" component={FoodDetails} options={{ headerShown: false }} />
+          {/* <Stack.Screen name="CartScreen" component={CartScreen} options={{ headerShown: true }} /> */}
         </Stack.Navigator>
       </NavigationContainer>
       </>

@@ -15,6 +15,7 @@ import { getItem } from '../utils/asyncStorage.js';
 import CustomTabLabel from './TabLabel.js';
 import { theme } from '../theme.js';
 import { Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 const { width, height } = Dimensions.get('window')
@@ -30,6 +31,7 @@ const orderCategories = [
 ];
 
 export default function TabNavigation() {
+    const navigation = useNavigation();
     const [showOnboarding, setShowOnboarding] = useState(null);
 
     useEffect(() => {
@@ -47,7 +49,6 @@ export default function TabNavigation() {
 
     if (showOnboarding) {
         return (
-
             <Tab.Navigator
                 initialRouteName="Home"
                 screenOptions={({ route }) => ({
@@ -116,7 +117,7 @@ export default function TabNavigation() {
                     })}
                 />
                 <Tab.Screen name="Order" component={OrderScreen}
-                    initialParams={{ orderCategories: orderCategories }} 
+                    initialParams={{ orderCategories: orderCategories }}
                     options={() => ({
                         headerTitleStyle: {
                             fontFamily: theme.font.styleBold,
@@ -129,7 +130,7 @@ export default function TabNavigation() {
                         }
                     })}
                 />
-                <Tab.Screen name="Cart" component={CartScreen} 
+                <Tab.Screen name="Cart" component={CartScreen}
                     options={() => ({
                         headerTitleStyle: {
                             fontFamily: theme.font.styleBold,
@@ -139,6 +140,12 @@ export default function TabNavigation() {
                         headerStyle: {
                             height: 120,
                             shadowOffset: { width: 0, height: 0 }
+                        }
+                    })}
+                    listeners={({ navigation }) => ({
+                        tabPress: event => {
+                            event.preventDefault(); // Prevent default action
+                            navigation.navigate('Cart'); // Navigate to CartScreen
                         }
                     })}
                 />

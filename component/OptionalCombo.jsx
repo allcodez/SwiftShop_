@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import Confetti from '../assets/svg/Confetti'
 import { theme } from '../theme'
@@ -11,7 +11,17 @@ const comboData = [
     { id: 2, name: '50cl Fanta' },
 ];
 
-export default function OptionalCombo() {
+export default function OptionalCombo({ onSelectCombo2 }) {
+
+    const [selectedComboId, setSelectedComboId] = useState(null);
+
+    const handleSelectCombo = (name) => {
+        setSelectedComboId(name);
+        onSelectCombo2(name);
+        // Find the combo data based on the selected ID
+    };
+
+
     return (
         <View style={styles.comboContainer}>
             <View style={styles.comboHead}>
@@ -24,11 +34,13 @@ export default function OptionalCombo() {
 
 
             <View style={styles.comboList}>
-                {/* Map through the comboData to render each combo option */}
                 {comboData.map((combo) => (
                     <View style={[styles.comboListBox, globalStyle.shadow]} key={combo.id}>
                         <Text style={styles.comboListText}>{combo.name}</Text>
-                        <RadioButton />
+                        <RadioButton
+                            selected={selectedComboId === combo.name}
+                            onPress={() => handleSelectCombo(combo.name)}
+                        />
                     </View>
                 ))}
             </View>

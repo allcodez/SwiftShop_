@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { View, SafeAreaView, ScrollView, StyleSheet, Text, Dimensions, ImageBackground, TouchableOpacity, Image } from 'react-native'
 import { globalStyle } from '../../globalStyle';
 import ArrowLeft from '../../assets/svg/ArrowLeft'
@@ -13,6 +13,10 @@ import restaurantProfileImg from '../../assets/900c75975ba1151037d562e93cc69de6.
 import { theme } from '../../theme';
 import CategoryFilter from '../../component/CategoryFilter';
 import Menu from '../../component/Menu'
+import CheckoutButton from '../../component/CheckoutButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
+;
 
 const { width, height } = Dimensions.get('window')
 
@@ -83,83 +87,133 @@ const menuData = [
     }
 ];
 
-
-
 export default function Restaurant({ navigation }) {
     const [activeFilter, setActiveFilter] = useState('All');
+    const [showCheckout, setShowCheckout] = useState(false);
 
+    useFocusEffect(
+        React.useCallback(() => {
+            const checkAsyncStorage = async () => {
+                try {
+                    const cartQuantity = await AsyncStorage.getItem('cartQuantity');
+                    const totalPrice = await AsyncStorage.getItem('totalPrice');
+                    console.log('Cart Quantity:', cartQuantity);
+                    console.log('Total Price:', totalPrice);
+                    setShowCheckout(cartQuantity && totalPrice);
+                } catch (error) {
+                    console.error('Error reading data from AsyncStorage:', error);
+                }
+            };
+    
+            checkAsyncStorage();
+    
+            return () => {
+                // Cleanup function
+            };
+        }, [])
+    );   
+
+    const checkAsyncStorage = async () => {
+        try {
+            const cartQuantity = await AsyncStorage.getItem('cartQuantity');
+            const totalPrice = await AsyncStorage.getItem('totalPrice');
+            console.log('Cart Quantity:', cartQuantity);
+            console.log('Total Price:', totalPrice);
+            if (cartQuantity && totalPrice) {
+                console.log('Setting showCheckout to true');
+                setShowCheckout(true);
+            } else {
+                console.log('Setting showCheckout to false');
+                setShowCheckout(false);
+            }
+        } catch (error) {
+            console.error('Error reading data from AsyncStorage:', error);
+        }
+    };
+
+    console.log('showCheckout:', showCheckout);
     return (
-        <ScrollView>
-            <View style={globalStyle.screenContainer}>
-                <ImageBackground source={restaurantCoverImg} style={globalStyle.resturantHeader} resizeMode="cover">
+        <View>
+            <ScrollView>
+                <View style={globalStyle.screenContainer}>
+                    <ImageBackground source={restaurantCoverImg} style={globalStyle.resturantHeader} resizeMode="cover">
 
-                    <View style={globalStyle.headerIcon}>
-                        <TouchableOpacity onPress={() => navigation.goBack()}>
-                            <ArrowLeft />
-                        </TouchableOpacity>
-
-                        <View style={styles.headerRightIcon}>
-                            <TouchableOpacity style={styles.headerIconButton}>
-                                <Share />
+                        <View style={globalStyle.headerIcon}>
+                            <TouchableOpacity onPress={() => navigation.goBack()}>
+                                <ArrowLeft />
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.headerIconButton}>
-                                <Heart />
-                            </TouchableOpacity>
+                            <View style={styles.headerRightIcon}>
+                                <TouchableOpacity style={styles.headerIconButton}>
+                                    <Share />
+                                </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.headerIconButton}>
-                                <Search />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </ImageBackground>
+                                <TouchableOpacity style={styles.headerIconButton}>
+                                    <Heart />
+                                </TouchableOpacity>
 
-                <View style={styles.resturantDetails}>
-                    <View>
-                        <Text style={styles.restaurantName}>Lilian Cuisine <Verified color={theme.color.primary} /></Text>
-
-                        <Image resizeMode='cover' source={restaurantProfileImg} style={styles.restaurantProfileImg} />
-
-                    </View>
-
-                    <View style={styles.resturantMoreDetails}>
-                        <View style={styles.resturantDetailsRating}>
-                            <Text style={[styles.resturantDetailsText]}><Location color='#6D7175' />89 Lekki Road, Uyo</Text>
-
-                            <View style={styles.resturantDetailsRating}>
-                                <Text style={styles.resturantDetailsText}> <Flame />4.5</Text>
-                                <Text style={styles.resturantDetailsText}>(56)</Text>
+                                <TouchableOpacity style={styles.headerIconButton}>
+                                    <Search />
+                                </TouchableOpacity>
                             </View>
                         </View>
+                    </ImageBackground>
 
-                        <View style={styles.resturantDetailsRating}>
+                    <View style={styles.resturantDetails}>
+                        <View>
+                            <Text style={styles.restaurantName}>Lilian Cuisine <Verified color={theme.color.primary} /></Text>
+
+                            <Image resizeMode='cover' source={restaurantProfileImg} style={styles.restaurantProfileImg} />
+
+                        </View>
+
+                        <View style={styles.resturantMoreDetails}>
                             <View style={styles.resturantDetailsRating}>
-                                <Text style={[styles.resturantDetailsText, styles.resturantDetailsTextActive]}>Open:</Text>
-                                <Text style={styles.resturantDetailsText}> 10:00am - 9:00pm</Text>
+                                <Text style={[styles.resturantDetailsText]}><Location color='#6D7175' />89 Lekki Road, Uyo</Text>
+
+                                <View style={styles.resturantDetailsRating}>
+                                    <Text style={styles.resturantDetailsText}> <Flame />4.5</Text>
+                                    <Text style={styles.resturantDetailsText}>(56)</Text>
+                                </View>
                             </View>
 
                             <View style={styles.resturantDetailsRating}>
-                                <Text style={[styles.resturantDetailsText, styles.resturantDetailsTextActive]}>Delivery:</Text>
-                                <Text style={styles.resturantDetailsText}> 25-30 min</Text>
+                                <View style={styles.resturantDetailsRating}>
+                                    <Text style={[styles.resturantDetailsText, styles.resturantDetailsTextActive]}>Open:</Text>
+                                    <Text style={styles.resturantDetailsText}> 10:00am - 9:00pm</Text>
+                                </View>
+
+                                <View style={styles.resturantDetailsRating}>
+                                    <Text style={[styles.resturantDetailsText, styles.resturantDetailsTextActive]}>Delivery:</Text>
+                                    <Text style={styles.resturantDetailsText}> 25-30 min</Text>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
 
-                <View style={styles.filter}>
-                    <CategoryFilter
-                        filterData={filterData}
-                        activeFilter={activeFilter}
-                        setActiveFilter={setActiveFilter}
-                    />
-                </View>
+                    <View style={styles.filter}>
+                        <CategoryFilter
+                            filterData={filterData}
+                            activeFilter={activeFilter}
+                            setActiveFilter={setActiveFilter}
+                        />
+                    </View>
 
-                <View style={styles.resturantMenu}>
-                    <Menu menuData={menuData} />
-                </View>
+                    <View style={styles.resturantMenu}>
+                        <Menu menuData={menuData} />
+                    </View>
 
-            </View>
-        </ScrollView>
+                </View>
+            </ScrollView>
+
+            {/* Chceckout Buttoon */}
+            {/* Conditional rendering for Checkout Button based on showCheckout state */}
+            {showCheckout && (
+                <View style={globalStyle.userCheckoutContainer}>
+                    <CheckoutButton navigation={navigation}/>
+                </View>
+            )}
+        </View>
     )
 }
 
@@ -228,6 +282,7 @@ const styles = StyleSheet.create({
     },
     resturantMenu: {
         paddingHorizontal: 15,
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 100
     }
 })

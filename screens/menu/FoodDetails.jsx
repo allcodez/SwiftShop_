@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, ScrollView, StyleSheet, Text, ImageBackground, TouchableOpacity, Dimensions } from 'react-native'
 import { globalStyle } from '../../globalStyle';
 import ArrowLeft from '../../assets/svg/ArrowLeft'
@@ -10,11 +10,25 @@ import OptionalCombo from '../../component/OptionalCombo';
 
 const { width, height } = Dimensions.get('window')
 
-
-
 export default function FoodDetails({ route, navigation }) {
 
     const { foodDetails } = route.params; // Access foodDetails from route.params
+    const [selectedCombo, setSelectedCombo] = useState(null); // State for selected combo
+    const [selectedCombo2, setSelectedCombo2] = useState(null); // State for selected optional combo
+
+    const handleComboSelect = (combo) => {
+        setSelectedCombo(combo); // Update selected combo state
+    };
+
+    const handleComboSelect2 = (comboId) => {
+        setSelectedCombo2(comboId); // Update selected optional combo state
+    };
+
+    const handleCheckout = () => {
+        navigation.goBack();
+    };
+
+    
 
     return (
         <View style={globalStyle.screenContainer}>
@@ -45,17 +59,17 @@ export default function FoodDetails({ route, navigation }) {
                 </View>
 
                 <View style={styles.combo}>
-                    <MenuCombo />
-                    <OptionalCombo />
+                    <MenuCombo onSelectCombo={handleComboSelect} />
+                    <OptionalCombo onSelectCombo2={handleComboSelect2} />
                 </View>
 
             </ScrollView>
 
             <View style={globalStyle.userCartContainer}>
-                <UserCart price={foodDetails.FoodPrice} />
+                {/* Add to cart button */}
+                <UserCart onAddToCart={handleCheckout} price={foodDetails.FoodPrice} foodDetails={foodDetails} selectedCombo={selectedCombo} selectedCombo2={selectedCombo2} />
+
             </View>
-
-
         </View>
     )
 }
@@ -88,7 +102,7 @@ const styles = StyleSheet.create({
         color: theme.color.lightText,
         fontFamily: theme.font.light,
     },
-    combo:{
+    combo: {
         gap: 20,
         marginBottom: 150
     }

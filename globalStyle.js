@@ -107,11 +107,11 @@ export const globalStyle = StyleSheet.create({
         alignSelf: 'center'
     },
     screenPlaceholder: {
-        // height: height,
-        flex: 0.85,
+        height: height / 1.4,
+        // flex: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 20
+        gap: 20,
         // backgroundColor: 'red'
     },
     placeholderImage: {
@@ -170,5 +170,13 @@ export const globalStyle = StyleSheet.create({
     },
     userCartText:{
         fontSize: width * 0.04
+    },
+    userCheckoutContainer:{
+        position: 'absolute',
+        bottom: 0,
+        width: width,
+        paddingTop: 20,
+        paddingHorizontal: 20,
+        paddingBottom: 35
     }
 })

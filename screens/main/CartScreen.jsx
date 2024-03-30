@@ -1,26 +1,60 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, StyleSheet, Dimensions, Image, ScrollView } from 'react-native';
 import { globalStyle } from '../../globalStyle.js';
 import { theme } from '../../theme.js';
-import Favourite from '../../assets/svg/Favourite.js'
+import CartItem from '../../component/CartItem.jsx';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
-// Modify the CraveScreen component to receive craveCategories as props
-export default function OrderScreen({ route }) {
-    return (
-        <View style={globalStyle.screenContainer}>
-            <View style={globalStyle.screenPlaceholder}>
-                <Image style={[globalStyle.placeholderImage, globalStyle.placeholderImage3]} source={require('../../assets/rafiki3.png')} />
-                <View style={globalStyle.placeholderText}>
-                    <Text style={globalStyle.placeholderBigText}>There is no favourite yet</Text>
-                    <Text style={globalStyle.placeholderSmallText}>Select your favourite restaurants, stores</Text>
-                </View>
-            </View>
-        </View>
+export default function CartScreen({ navigation }) {
+    const [cartItems, setCartItems] = useState([]);
 
+    const fetchCartItems = async () => {
+        try {
+            const storedItems = await AsyncStorage.getItem('cartItems');
+            if (storedItems) {
+                setCartItems(JSON.parse(storedItems));
+                console.log('Retrieved cart items:', JSON.parse(storedItems));
+            } else {
+                console.log('No cart items found in AsyncStorage.');
+            }
+        } catch (error) {
+            console.error('Error retrieving cart items:', error);
+        }
+    };
+
+    // Fetch cart items when the screen gains focus
+    useFocusEffect(
+        useCallback(() => {
+            fetchCartItems();
+        }, [])
+    );
+
+    return (
+        <ScrollView style={globalStyle.screenContainer}>
+                {/* Conditionally render the placeholder or cart items */}
+                {cartItems.length === 0 ? (
+                    <View style={globalStyle.screenPlaceholder}>
+                        <Image style={[globalStyle.placeholderImage, globalStyle.placeholderImage3]} source={require('../../assets/rafiki3.png')} />
+                        <View style={globalStyle.placeholderText}>
+                            <Text style={globalStyle.placeholderBigText}>There is no favourite yet</Text>
+                            <Text style={globalStyle.placeholderSmallText}>Select your favourite restaurants, stores</Text>
+                        </View>
+                    </View>
+                ) : (
+                    <View style={styles.cartItemContainer}>
+                        {cartItems.map((item, index) => (
+                            <CartItem key={index} cartItem={item} />
+                        ))}
+                    </View>
+                )}
+        </ScrollView>
     );
 }
+
+
 
 const styles = StyleSheet.create({
     category: {
@@ -50,5 +84,10 @@ const styles = StyleSheet.create({
         fontSize: theme.fontSize.medium,
         color: 'grey',
     },
+    cartItemContainer:{
+        padding: 20,
+        gap: 25
+    }
 });
+
 
