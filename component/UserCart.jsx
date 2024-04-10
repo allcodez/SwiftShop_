@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
 import { globalStyle } from '../globalStyle';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 const { width } = Dimensions.get('window');
 
@@ -11,70 +10,55 @@ export default function UserCart({ price, onAddToCart, foodDetails, selectedComb
     const [quantity, setQuantity] = useState(1);
     const navigation = useNavigation();
 
+    // useEffect(() => {
+    //     const fetchQuantity = async () => {
+    //         try {
+    //             const cartQuantity = await AsyncStorage.getItem('cartQuantity');
+    //             if (cartQuantity) {
+    //                 setQuantity(parseInt(cartQuantity, 10));
+    //             }
+    //         } catch (error) {
+    //             console.error('Error retrieving cart quantity:', error);
+    //         }
+    //     };
+
+    //     fetchQuantity();
+    // }, []);
+
     const numericPrice = parseFloat(price.replace(/[^\d.-]/g, ''));
-    // const handleAddToCart = async () => {
-    //     const totalPrice = numericPrice * quantity;
-    //     console.log(`Added ${quantity} item(s) to cart at total price ₦${totalPrice}`);
-
-    //     // Save data to AsyncStorage
-    //     try {
-    //         const cartItem = {
-    //             FoodImg: foodDetails.FoodImg,
-    //             FoodName: foodDetails.FoodName,
-    //             FoodPrice: foodDetails.FoodPrice,
-    //             FoodCombo1: selectedCombo,
-    //             FoodCombo2: selectedCombo2
-    //         };
-    //         await AsyncStorage.setItem('cartItem', JSON.stringify(cartItem));
-    //         console.log('Data saved to AsyncStorage successfully.', cartItem);
-    //     } catch (error) {
-    //         console.error('Error saving data to AsyncStorage:', error);
-    //     }
-
-    //     // Proceed with other actions (if any)
-    //     onAddToCart();
-    // };
-
-
 
     const handleAddToCart = async () => {
+        const totalPrice = quantity * numericPrice;
+
         const newItem = {
             FoodImg: foodDetails.FoodImg,
             FoodName: foodDetails.FoodName,
             FoodPrice: foodDetails.FoodPrice,
             FoodCombo1: selectedCombo,
-            FoodCombo2: selectedCombo2
+            FoodCombo2: selectedCombo2,
+            FoodQuantity: quantity,
+            TotalPrice: totalPrice, // Save the total price to AsyncStorage
         };
 
         try {
-            // Retrieve existing cart items from AsyncStorage
-            const totalPrice = numericPrice * quantity;
-            console.log(`Added ${quantity} item(s) to cart at total price ₦${totalPrice}`);
-            await saveToAsyncStorage(quantity, totalPrice); // Save quantity and total price to AsyncStorage
+            await saveToAsyncStorage(quantity, totalPrice);
 
             const existingItems = await AsyncStorage.getItem('cartItems');
             const cartItems = existingItems ? JSON.parse(existingItems) : [];
-
-            // Add new item to cart
             cartItems.push(newItem);
-            console.log('Cart item added:', JSON.stringify(cartItems));
-
-
-            // Save updated cart items to AsyncStorage
             await AsyncStorage.setItem('cartItems', JSON.stringify(cartItems));
 
+            console.log('Cart item added:', JSON.stringify(cartItems));
             console.log('Item added to cart successfully.');
-            onAddToCart(); // Proceed with other actions (if any)
+            onAddToCart();
         } catch (error) {
             console.error('Error adding item to cart:', error);
         }
-
     };
 
-    // Function to save data to AsyncStorage
     const saveToAsyncStorage = async (quantity, totalPrice) => {
         try {
-            await AsyncStorage.setItem('cartQuantity', quantity.toString());
+            // await AsyncStorage.setItem('cartQuantity', quantity.toString());
             await AsyncStorage.setItem('totalPrice', totalPrice.toString());
             console.log('Data saved to AsyncStorage successfully.');
         } catch (error) {
@@ -103,12 +87,13 @@ export default function UserCart({ price, onAddToCart, foodDetails, selectedComb
             </View>
             <TouchableOpacity style={[styles.cartAdd, globalStyle.solidDefaultButton]} onPress={handleAddToCart}>
                 <Text style={[globalStyle.userCartText, globalStyle.solidDefaultButtonText]}>
-                    ADD TO CART ₦{quantity * numericPrice} {/* Display total price */}
+                    ADD TO CART ₦{quantity * numericPrice}
                 </Text>
             </TouchableOpacity>
         </View>
     );
 }
+
 
 const styles = StyleSheet.create({
     userCart: {

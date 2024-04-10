@@ -3,6 +3,8 @@ import { View, StyleSheet, Image, Text, TouchableOpacity, Dimensions } from 'rea
 import { globalStyle } from '../globalStyle';
 import { theme } from '../theme';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -13,6 +15,17 @@ export default function Menu({ menuData }) {
     const handleAddPress = (item) => {
         // Navigate to FoodDetails screen and pass the food details as params
         navigation.navigate('FoodDetails', { foodDetails: item });
+        hideCheckout()
+    };
+
+     // Function to clear AsyncStorage
+     const hideCheckout = async () => {
+        try {
+            await AsyncStorage.removeItem('totalPrice');
+            console.log('totalPrice cleared successfully.');
+        } catch (error) {
+            console.error('Error clearing totalPrice:', error);
+        }
     };
 
     return (

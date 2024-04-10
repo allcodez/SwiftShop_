@@ -58,6 +58,7 @@ export const globalStyle = StyleSheet.create({
     },
     outlineButton: {
         alignSelf: 'center',
+        backgroundColor: '#ffffff',
         borderColor: theme.color.primary,
         fontFamily: theme.font.minimal,
         borderWidth: 1,
@@ -178,5 +179,23 @@ export const globalStyle = StyleSheet.create({
         paddingTop: 20,
         paddingHorizontal: 20,
         paddingBottom: 35
-    }
+    },
+    detailsContainer: {
+        backgroundColor: 'white', // Set a light background color
+        borderRadius: 20,
+        shadowColor: '#171717',
+        shadowOffset: { width: -4, height: 1 },
+        shadowOpacity: 0.13,
+        shadowRadius: 10,
+        padding: 30
+      },
+      detialsTextBig:{
+        fontFamily: theme.font.bold,
+        fontSize: width * 0.039,
+        color: theme.color.black,
+      },
+      detialsTextSmall:{
+        fontFamily: theme.font.minimal,
+        color: theme.color.labelText,
+      }
 })

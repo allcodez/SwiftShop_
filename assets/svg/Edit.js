@@ -4,6 +4,7 @@ const SvgComponent = ({ color = "#000", ...props }) => (
   <Svg
     width={24}
     height={24}
+    viewBox=" 0 0 35 35"
     fill="none"
     {...props}
   >

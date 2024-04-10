@@ -45,7 +45,6 @@ export default function FoodDetails({ route, navigation }) {
                     </View>
                 </ImageBackground>
 
-
                 <View style={styles.details}>
                     <View style={styles.deatilsContent}>
                         <Text style={styles.deatilsName}>{foodDetails.FoodName}</Text>

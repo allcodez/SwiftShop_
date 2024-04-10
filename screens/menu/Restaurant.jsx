@@ -46,7 +46,7 @@ const menuData = [
     {
         id: 3,
         FoodImg: require('../../assets/52a4490406d17af1562c0763aa90d092.jpeg'),
-        FoodName: 'Chicken Tikka Masala',
+        FoodName: 'Chicken Tikka Masala Masala Masala',
         FoodDesc: 'Grilled chicken in a creamy tomato sauce',
         FoodPrice: '₦1,500'
     },
@@ -90,44 +90,68 @@ const menuData = [
 export default function Restaurant({ navigation }) {
     const [activeFilter, setActiveFilter] = useState('All');
     const [showCheckout, setShowCheckout] = useState(false);
+    const [price, setPrice] = useState(0)
 
     useFocusEffect(
         React.useCallback(() => {
             const checkAsyncStorage = async () => {
                 try {
-                    const cartQuantity = await AsyncStorage.getItem('cartQuantity');
+                    // const cartQuantity = await AsyncStorage.getItem('cartQuantity');
                     const totalPrice = await AsyncStorage.getItem('totalPrice');
-                    console.log('Cart Quantity:', cartQuantity);
+                    // console.log('Cart Quantity:', cartQuantity);
                     console.log('Total Price:', totalPrice);
-                    setShowCheckout(cartQuantity && totalPrice);
+                    setShowCheckout(totalPrice);
                 } catch (error) {
                     console.error('Error reading data from AsyncStorage:', error);
                 }
+
             };
-    
+
             checkAsyncStorage();
-    
+
             return () => {
                 // Cleanup function
             };
         }, [])
-    );   
+    );
 
     const checkAsyncStorage = async () => {
         try {
-            const cartQuantity = await AsyncStorage.getItem('cartQuantity');
             const totalPrice = await AsyncStorage.getItem('totalPrice');
-            console.log('Cart Quantity:', cartQuantity);
             console.log('Total Price:', totalPrice);
-            if (cartQuantity && totalPrice) {
+            if (totalPrice !== null) {
                 console.log('Setting showCheckout to true');
                 setShowCheckout(true);
+                const numericPrice = parseFloat(totalPrice);
+                if (!isNaN(numericPrice)) {
+                    setPrice(numericPrice);
+                } else {
+                    setPrice(0);
+                }
             } else {
                 console.log('Setting showCheckout to false');
                 setShowCheckout(false);
+                setPrice(0);
             }
         } catch (error) {
             console.error('Error reading data from AsyncStorage:', error);
+        }
+    };
+
+
+
+
+    // Function to display all items in AsyncStorage
+    const displayStorageContent = async () => {
+        try {
+            const keys = await AsyncStorage.getAllKeys(); // Get all keys
+            const items = await AsyncStorage.multiGet(keys); // Get all items corresponding to keys
+            // Log each item
+            items.forEach(([key, value]) => {
+                console.log(`${key}: ${value}`);
+            });
+        } catch (error) {
+            console.error('Error retrieving data from AsyncStorage:', error);
         }
     };
 
@@ -144,7 +168,7 @@ export default function Restaurant({ navigation }) {
                             </TouchableOpacity>
 
                             <View style={styles.headerRightIcon}>
-                                <TouchableOpacity style={styles.headerIconButton}>
+                                <TouchableOpacity onPress={displayStorageContent} style={styles.headerIconButton}>
                                     <Share />
                                 </TouchableOpacity>
 
@@ -208,9 +232,10 @@ export default function Restaurant({ navigation }) {
 
             {/* Chceckout Buttoon */}
             {/* Conditional rendering for Checkout Button based on showCheckout state */}
+
             {showCheckout && (
                 <View style={globalStyle.userCheckoutContainer}>
-                    <CheckoutButton navigation={navigation}/>
+                    <CheckoutButton navigation={navigation} price={price} />
                 </View>
             )}
         </View>

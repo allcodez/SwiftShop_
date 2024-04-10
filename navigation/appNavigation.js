@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'react-native'; // Import StatusBar component
+import { Dimensions, StatusBar } from 'react-native'; // Import StatusBar component
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/main/HomeScreen.jsx';
 import SearchScreen from '../screens/main/SearchScreen.jsx';
@@ -26,14 +26,18 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import TabNavigation from './TabNavigation.js';
 import Restaurant from '../screens/menu/Restaurant.jsx';
 import FoodDetails from '../screens/menu/FoodDetails.jsx'
+import OrderSummary from '../screens/payment/OrderSummary.jsx';
+import { theme } from '../theme.js';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const { width, height } = Dimensions.get('window')
+
 export default function AppNavigation() {
-    return (
-      <>
-      <StatusBar barStyle="dark-content" /> 
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="GetStarted">
           <Stack.Screen name="Tabs" options={{ headerShown: false }} component={TabNavigation} />
@@ -51,9 +55,31 @@ export default function AppNavigation() {
           <Stack.Screen name="ResetPassword" options={{ headerShown: false }} component={ResetPassword} />
           <Stack.Screen name="Restaurant" component={Restaurant} options={{ headerShown: false }} />
           <Stack.Screen name="FoodDetails" component={FoodDetails} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="OrderSummary"
+            component={OrderSummary}
+            options={() => ({
+              headerShown: false,
+              // headerTitleStyle: {
+              //   fontFamily: theme.font.styleBold,
+              //   fontSize: width * 0.075,
+              //   // paddingVertical: 20, // Adjusted to paddingVertical to maintain header height
+              //   // paddingHorizontal: 20 // Added paddingHorizontal for horizontal padding
+              // },
+              // headerStyle: {
+              //   height: 120, // Adjusted height to maintain space for the title
+              //   shadowOffset: { width: 0, height: 0 },
+                
+              // },
+              // headerBackTitleVisible: false,
+              // headerBackImageSource: {
+              //   color: '#000000'
+              // }
+            })}
+          />
           {/* <Stack.Screen name="CartScreen" component={CartScreen} options={{ headerShown: true }} /> */}
         </Stack.Navigator>
       </NavigationContainer>
-      </>
-    );
+    </>
+  );
 }

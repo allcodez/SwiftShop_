@@ -1,24 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { globalStyle } from '../globalStyle';
 import { theme } from '../theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Trash from '../assets/svg/Trash.js';
+import Copy from '../assets/svg/Copy.js';
+import Edit from '../assets/svg/Edit.js';
 
 const { width, height } = Dimensions.get('window');
 
-export default function CartItem({ cartItem }) {
+export default function CartItem({ cartItem, remountCartScreen, onDeleteItem }) {
+    // Handler for deleting the item
+    
+
+    // // Use useEffect to trigger remountCartScreen when the component unmounts
+    // useEffect(() => {
+    //     return () => {
+    //         remountCartScreen();
+    //     };
+    // }, []);
+
+
+    // Handler for duplicating the item
+    const handleDuplicateItem = async () => {
+        // Implement duplication logic here
+        console.log('Duplicating item:', cartItem);
+    };
+
+
     // Render the cart item
     return (
         <View style={[styles.cartItemContainer, globalStyle.shadow]}>
             <View style={styles.cartItemCard}>
+
                 <View style={styles.cartMainItem}>
                     <Image resizeMode='cover' style={styles.cartItemImage} source={cartItem.FoodImg} />
                     <Text style={styles.cartItemPrice}>{cartItem.FoodPrice}</Text>
                 </View>
 
                 <View style={styles.cartItemDetailContent2}>
+                    <View style={styles.cartItemEdit}>
+                        <Edit color={theme.color.lightText} />
+                    </View>
                     <View style={styles.cartItemDetails}>
                         <View style={styles.cartItemDetailContent}>
+
                             <Text style={styles.cartItemName}>{cartItem.FoodName}</Text>
                             {/* combo list */}
                             {cartItem.FoodCombo1 && (
@@ -45,15 +71,28 @@ export default function CartItem({ cartItem }) {
                     </View>
                 </View>
             </View>
-            <View></View>
+            <View style={styles.cartItemBottom}>
+                {/* DUPLICATE ITEM */}
+                <TouchableOpacity style={styles.cartItemBottomContent} onPress={handleDuplicateItem}>
+                    <Copy color='#6654E7' />
+                    <Text style={styles.cartItemBottomContentText}>Duplicate</Text>
+                </TouchableOpacity>
+
+                {/* Delete item */}
+                <TouchableOpacity style={styles.cartItemBottomContent} onPress={() => onDeleteItem(cartItem)}>
+                    <Trash color='#6654E7' />
+                    <Text style={styles.cartItemBottomContentText}>Remove</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
 
 
+
 const styles = StyleSheet.create({
     cartItemContainer: {
-        gap: 25
+        gap: 15
     },
     cartItemCard: {
         flexDirection: 'row',
@@ -93,6 +132,7 @@ const styles = StyleSheet.create({
     cartItemDetailContent2: {
         flex: 1,
         // flexDirection: 'row',
+        // backgroundColor: 'red',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
@@ -110,6 +150,24 @@ const styles = StyleSheet.create({
     cartItemAdd: {
         paddingVertical: 8,
         paddingHorizontal: 16,
+    },
+    cartItemEdit: {
+        position: 'absolute',
+        right: 0,
+        top: 2
+    },
+    cartItemBottom: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flex: 1,
+        paddingHorizontal: 15,
+    },
+    cartItemBottomContent: {
+        flexDirection: 'row',
+    },
+    cartItemBottomContentText: {
+        color: theme.color.primary,
+        fontFamily: theme.font.minimal
     }
 
 });
