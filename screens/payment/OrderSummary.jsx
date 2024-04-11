@@ -1,32 +1,45 @@
 import React from 'react'
-import { View, ScrollView, StyleSheet, Text, SafeAreaView, Dimensions } from 'react-native'
+import { View, ScrollView, StyleSheet, Text, SafeAreaView, Dimensions, KeyboardAvoidingView } from 'react-native'
 import ArrowLeft from '../../assets/svg/ArrowLeft'
 import { globalStyle } from '../../globalStyle'
 import { theme } from '../../theme'
 import SummaryMenu from '../../component/SummaryMenu'
 import SummaryDetails from '../../component/SummaryDetails'
+import VendorInstruction from '../../component/VendorInstruc'
+import RiderInstruction from '../../component/RiderInstruc'
 
 const { width, height } = Dimensions.get('window')
 
 export default function OrderSummary() {
     return (
         <SafeAreaView style={globalStyle.screenContainer}>
-            <ScrollView>
-                <View style={styles.customHeader}>
-                    <ArrowLeft />
-                    <Text style={styles.customHeaderText}>Order Summary</Text>
-                    <View></View>
-                </View>
-                <View style={styles.summaryContent}>
-                    <View style={styles.summaryDetails}>
-                        <SummaryDetails />
+            <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+                <ScrollView>
+                    <View style={styles.customHeader}>
+                        <ArrowLeft />
+                        <Text style={styles.customHeaderText}>Order Summary</Text>
+                        <View></View>
                     </View>
 
-                    <View style={styles.summaryDetails}>
-                        <SummaryMenu />
+                    <View style={styles.summaryContent}>
+                        <View>
+                            <SummaryDetails />
+                        </View>
+
+                        <View>
+                            <SummaryMenu />
+                        </View>
+
+                        <View>
+                            <VendorInstruction />
+                        </View>
+
+                        <View>
+                            <RiderInstruction />
+                        </View>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }
@@ -34,6 +47,9 @@ export default function OrderSummary() {
 const styles = StyleSheet.create({
     summaryContent: {
         gap: 15,
+        paddingHorizontal: 15,
+        // marginBottom: 10
+
     },
     customHeader: {
         flexDirection: 'row',
@@ -46,7 +62,5 @@ const styles = StyleSheet.create({
         fontSize: width * 0.075,
         padding: 20
     },
-    summaryDetails: {
-        paddingHorizontal: 15,
-    }
+
 })
