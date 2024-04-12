@@ -181,7 +181,7 @@ export const globalStyle = StyleSheet.create({
         paddingBottom: 35
     },
     detailsContainer: {
-        backgroundColor: 'white', // Set a light background color
+        backgroundColor: 'white',  // Set a light background color
         borderRadius: 20,
         shadowColor: '#171717',
         shadowOffset: { width: -4, height: 1 },

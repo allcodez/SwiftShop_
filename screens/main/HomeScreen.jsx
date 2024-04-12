@@ -3,19 +3,19 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity, SafeAreaView, Key
 import { useNavigation } from '@react-navigation/native';
 import { removeItem } from '../../utils/asyncStorage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { globalStyle } from '../../globalStyle.js';
-import Bell from '../../assets/svg/Bell.js';
-import ArrowDown from '../../assets/svg/ArrownDown.js';
-import { theme } from '../../theme.js';
-import SearchOutline from '../../assets/svg/SearchOutline.js';
-import Setting from '../../assets/svg/Settings.js'
-import SearchBar from '../../component/Search.jsx';
+import { globalStyle } from '../../globalStyle';
+import Bell from '../../assets/svg/Bell';
+import ArrowDown from '../../assets/svg/ArrowDown';
+import { theme } from '../../theme';
+import SearchOutline from '../../assets/svg/SearchOutline';
+import Setting from '../../assets/svg/Settings'
+import SearchBar from '../../component/Search';
 import FoodImage from '../../assets/food.png';
 import Grocery from '../../assets/grocery.png';
 import Med from '../../assets/med.png';
 import Drinks from '../../assets/drink.png';
 import Swiper from 'react-native-swiper';
-import Offer from '../../component/Offers.jsx';
+import Offer from '../../component/Offers';
 
 
 const { width, height } = Dimensions.get('window');

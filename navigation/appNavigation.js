@@ -28,6 +28,7 @@ import Restaurant from '../screens/menu/Restaurant.jsx';
 import FoodDetails from '../screens/menu/FoodDetails.jsx'
 import OrderSummary from '../screens/payment/OrderSummary.jsx';
 import { theme } from '../theme.js';
+import Payment from '../screens/payment/Payment.jsx';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -77,7 +78,7 @@ export default function AppNavigation() {
               // }
             })}
           />
-          {/* <Stack.Screen name="CartScreen" component={CartScreen} options={{ headerShown: true }} /> */}
+          <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

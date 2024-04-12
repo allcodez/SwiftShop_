@@ -11,7 +11,7 @@ export default function CartUserAction() {
     const navigation = useNavigation()
 
     const handleOrder = () => {
-        navigation.push('OrderSummary')
+        navigation.push('Payment')
     }
 
     return (
